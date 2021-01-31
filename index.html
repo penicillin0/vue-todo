@@ -1,0 +1,35 @@
+<html lang="ja">
+  <html></html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h1>やること</h1>
+    <div id="app">
+      <h2>未完了</h2>
+      <p>タスク数: {{ getNotDoneNum }}</p>
+      <div v-for="todo in getNotDoneTodo">
+        <input v-model="todo.isDone" type="checkbox" />
+        &nbsp;{{todo.name}}
+        <button v-on:click="handleTodoDelete(todo)" check>削除</button>
+      </div>
+
+      <h2>未完了</h2>
+      <p>タスク数: {{ getDoneNum }}</p>
+      <ul>
+        <li v-for="todo in getDoneTodo">
+          <input v-model="todo.isDone" type="checkbox" />
+          &nbsp;{{todo.name}}
+          <button v-on:click="handleTodoDelete(todo)">削除</button>
+        </li>
+      </ul>
+
+      <h2>追加</h2>
+      <input v-model="todoName" type="text" />
+      <button v-on:click="handleAddClick">追加</button>
+    </div>
+
+    <script src="index.js" charset="UTF-8"></script>
+  </body>
+</html>
