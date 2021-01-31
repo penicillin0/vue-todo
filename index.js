@@ -4,14 +4,17 @@ var app = new Vue({
     message: "",
     todos: [
       {
+        id: 1,
         name: "掃除",
         isDone: true,
       },
       {
+        id: 2,
         name: "洗濯",
         isDone: true,
       },
       {
+        id: 3,
         name: "洗い物",
         isDone: true,
       },
@@ -20,7 +23,15 @@ var app = new Vue({
   },
   methods: {
     handleAddClick: function () {
-      this.todos = this.todos.concat({ name: this.todoName, isDone: false });
+      this.todos = this.todos.concat({
+        name: this.todoName,
+        isDone: false,
+        id:
+          Math.max.apply(
+            null,
+            this.todos.map((todo) => todo.id)
+          ) + 1,
+      });
       this.todoName = "";
     },
     handleTodoDelete: function (deletedTodo) {
